@@ -1,0 +1,18 @@
+import axios from 'axios';
+
+// axios 공통 설정 (config)를 create의 인자로 넣어준다.
+const instance = axios.create({
+  baseURL: process.env.VUE_APP_API_URL,
+});
+
+function registerUser(userData) {
+  // const url = 'http://localhost:3000/signup';
+  // return axios.post(url, userData);
+  return instance.post('signup', userData);
+}
+
+function loginUser(userData) {
+  return instance.post('login', userData);
+}
+
+export { registerUser, loginUser };
