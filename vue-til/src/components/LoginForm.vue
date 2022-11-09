@@ -10,6 +10,7 @@
         <input id="password" type="text" v-model="password" />
       </div>
       <button type="submit">Login</button>
+      <p>{{ logMessage }}</p>
     </form>
   </div>
 </template>
@@ -21,17 +22,27 @@ export default {
     return {
       username: '',
       password: '',
+      logMessage: '',
     };
   },
   methods: {
     async submitForm() {
-      console.log('hi');
       const userData = {
         username: this.username,
         password: this.password,
       };
-      const res = await loginUser(userData);
-      console.log(res);
+      try {
+        const { data } = await loginUser(userData);
+        this.logMessage = `welcome ${data.user.username}`;
+        this.initForm();
+      } catch (err) {
+        console.log(err.response);
+        this.logMessage = `invalid id/pw`;
+      }
+    },
+    initForm() {
+      this.username = '';
+      this.password = '';
     },
   },
 };
