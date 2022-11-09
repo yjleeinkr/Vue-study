@@ -17,7 +17,8 @@ module.exports = {
       printWidth: 80,
       bracketSpacing: true,
       arrowParens: 'avoid',
-    }]
+    }],
+    "no-unused-vars": "warn"
   },
   parserOptions: {
     parser: "babel-eslint"
