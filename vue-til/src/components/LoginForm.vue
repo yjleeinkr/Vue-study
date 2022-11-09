@@ -9,7 +9,9 @@
         <label for="password">pw: </label>
         <input id="password" type="text" v-model="password" />
       </div>
-      <button type="submit">Login</button>
+      <button :disabled="!isUsernameValid || !password" type="submit">
+        Login
+      </button>
       <p>{{ logMessage }}</p>
     </form>
   </div>
@@ -17,6 +19,8 @@
 
 <script>
 import { loginUser } from '@/api/index';
+import { validateEmail } from '@/utils/validation';
+
 export default {
   data() {
     return {
@@ -24,6 +28,11 @@ export default {
       password: '',
       logMessage: '',
     };
+  },
+  computed: {
+    isUsernameValid() {
+      return validateEmail(this.username);
+    },
   },
   methods: {
     async submitForm() {
@@ -34,10 +43,11 @@ export default {
       try {
         const { data } = await loginUser(userData);
         this.logMessage = `welcome ${data.user.username}`;
-        this.initForm();
       } catch (err) {
-        console.log(err.response);
-        this.logMessage = `invalid id/pw`;
+        console.log(err.response.data);
+        this.logMessage = err.response.data;
+      } finally {
+        this.initForm();
       }
     },
     initForm() {
