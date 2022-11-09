@@ -1,19 +1,31 @@
 <template>
-  <div>
-    <form @submit.prevent="submitForm">
-      <div>
-        <label for="username">id: </label>
-        <input id="username" type="text" v-model="username" />
-      </div>
-      <div>
-        <label for="password">pw: </label>
-        <input id="password" type="text" v-model="password" />
-      </div>
-      <button :disabled="!isUsernameValid || !password" type="submit">
-        Login
-      </button>
-      <p>{{ logMessage }}</p>
-    </form>
+  <div class="contents">
+    <div class="form-wrapper form-wrapper-sm">
+      <form @submit.prevent="submitForm" class="form">
+        <div>
+          <label for="username">id: </label>
+          <input id="username" type="text" v-model="username" />
+          <p class="validation-text">
+            <span v-if="!isUsernameValid || !username">
+              Pls enter an email address
+            </span>
+            <span v-else>good!</span>
+          </p>
+        </div>
+        <div>
+          <label for="password">pw:</label>
+          <input id="password" type="text" v-model="password" />
+        </div>
+        <button
+          :disabled="!isUsernameValid || !password"
+          type="submit"
+          class="btn"
+        >
+          Login
+        </button>
+      </form>
+      <p class="log">{{ logMessage }}</p>
+    </div>
   </div>
 </template>
 
