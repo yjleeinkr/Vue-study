@@ -13,7 +13,7 @@
 - [Node.js LTS 버전(v10.x 이상)](https://nodejs.org/ko/) 해당프로젝트에선 v10.16.3 사용
 - [Vue.js Dev Tools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
 
-## 내용 정리
+## 개념 및 내용 정리 
 
 - [blog/yjleekr](https://yjleekr.tistory.com/category/Vue)
 
