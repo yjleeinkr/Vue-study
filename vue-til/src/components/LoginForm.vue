@@ -54,7 +54,10 @@ export default {
       };
       try {
         const { data } = await loginUser(userData);
-        this.logMessage = `welcome ${data.user.username}`;
+        // console.log('data ', data.user.username);
+        const { username } = data.user;
+        this.$router.push('/main');
+        // this.logMessage = `welcome ${data.user.username}`;
       } catch (err) {
         console.log(err.response.data);
         this.logMessage = err.response.data;
