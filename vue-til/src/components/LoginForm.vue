@@ -54,9 +54,8 @@ export default {
       };
       try {
         const { data } = await loginUser(userData);
-        // console.log('data ', data.user.username);
         const { username } = data.user;
-        // this.logMessage = `welcome ${data.user.username}`;
+        this.$store.commit('setToken', data.token);
         this.$store.commit('setUsername', username);
         this.$router.push('/main');
       } catch (err) {
