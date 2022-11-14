@@ -13,21 +13,33 @@
         </div>
         <button type="submit" class="btn">Create</button>
       </form>
+      <p class="log">{{ logMessage }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { createPost } from '@/api/index.js';
 export default {
   data() {
     return {
       title: '',
       contents: '',
+      logMessage: '',
     };
   },
   methods: {
-    submitForm() {
-      console.log('hihi ');
+    async submitForm() {
+      try {
+        const response = await createPost({
+          title: this.title,
+          contents: this.contents,
+        });
+        console.log('response ', response);
+        this.logMessage = response.response.data.message;
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };
