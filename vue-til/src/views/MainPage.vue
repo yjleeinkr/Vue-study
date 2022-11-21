@@ -37,9 +37,7 @@ export default {
     async fetchData() {
       this.isLoading = true;
       const { data } = await fetchPosts();
-      console.log(' ', data);
       this.isLoading = false;
-      console.log('데이터', data);
       this.postItems = data.posts;
     },
   },
