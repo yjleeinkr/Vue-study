@@ -6,6 +6,11 @@ function fetchPosts() {
   return posts.get('/');
 }
 
+// id로 특정 학습 노트를 조회하는 API
+function fetchPost(postId) {
+  return posts.get(postId);
+}
+
 // 학습 노트 데이터를 생성하는 API
 function createPost(postData) {
   return posts.post('/', postData);
@@ -15,4 +20,4 @@ function createPost(postData) {
 function deletePost(postId) {
   return posts.delete(postId);
 }
-export { fetchPosts, createPost, deletePost };
+export { fetchPosts, fetchPost, createPost, deletePost };
